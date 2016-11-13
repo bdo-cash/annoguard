@@ -1,3 +1,5 @@
+#AnnoProguard
+
 ###本文讲述全新基于`@Annotation`的混淆配置方法
 
 * 实现原理及目标已经在 [源文件](http://github.com/WeiChou/AnnoProguard/blob/master/libs/annotations.pro) 注释中注明。
