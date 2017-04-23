@@ -9,43 +9,19 @@
 buildscript {
     repositories {
         jcenter()
-//        mavenCentral()
     }
     dependencies {
-//        classpath 'com.android.tools.build:gradle:2.2.0'
-//        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-//plugins {
-//    id "com.github.dcendents.android-maven" version "1.5"
-//}
-
-allprojects {
-    repositories {
-        jcenter()
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
     }
 }
 
 apply plugin: 'java'
-//apply plugin: 'application'
-apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven'
+apply plugin: 'com.jfrog.bintray'
 
 repositories {
     jcenter()
 }
-
-dependencies {
-//    compile 'com.google.guava:guava:20.0'
-    // Use JUnit test framework
-//    testCompile 'junit:junit:4.12'
-}
-
-// Define the main class for the application
-//mainClassName = 'App'
 
 sourceSets {
     main {
@@ -53,26 +29,142 @@ sourceSets {
             srcDirs 'src'
             exclude 'src/test'
         }
+        resources {
+            srcDirs 'libs'
+            include '*.pro'
+        }
     }
     test {
         java.srcDirs 'src/test'
     }
 }
 
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs + sourceSets.main.resources.srcDirs
+    classifier = 'sources'
+}
+
+// 解决中文乱码问题，在~/.gradle/wrapper/dists/gradle-x.x-all/xxx/gradle-x.x/bin/gradle(.bat)中找到以下参数并设置值：
+// DEFAULT_JVM_OPTS="-Dfile.encoding=UTF-8"
+// 但以上方法不行，下面方法才最终解决：
+javadoc {
+    options {
+        encoding 'UTF-8'
+        charSet 'UTF-8'
+    }
+}
+
+// 系统已经有该任务
+//task javadoc(type: Javadoc) {
+//    source = sourceSets.main.java.srcDirs
+//    // 没有android
+////    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+
+// 由于会报错而中断"错误: 不允许使用自关闭元素"，但文档已经正确输出了。
+// 所以这样如果检查到文档正确输出了，则不再执行该任务。
+// 效果上，第一次build会失败，但再来一次便会成功。
+javadoc.onlyIf {
+    boolean done = true
+    buildDir.eachDirMatch('docs') { d ->
+        d.eachDirMatch('javadoc') { j ->
+            println '->javadoc已经存在，不再执行该任务，以免异常中断。'
+            println '->path:' + j
+            done = false
+            return
+        }
+    }
+    done
+}
+
+// 要求不能使用自关闭元素如<br/>，所以暂不输出文档。
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// 以下用于打包上传 /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
+// 参见文档https://inthecheesefactory.com/blog/how-to-upload-library-to-jcenter-maven-central-as-dependency/en
 
-//apply plugin: 'com.android.library'
-//apply plugin: 'com.github.dcendents.android-maven'
-
-// Maven Group ID for the artifact
-group = "hobby.wei.c"
-// This is the library version used when deploying the artifact
+group = "hobby.wei.c.anno"
 version = "1.0.0"
 
 def projectName = rootProject.name
 def artifact = projectName.toLowerCase() // 不是project的属性，自定义变量，所以有def.
+
+// 在命令gradle xxx后面带参数即可 -DforGithub=true/false 即可.
+def forGithub = System.getProperty('forGithub') ?: true
+def baseUrl = forGithub ? 'https://github.com/weichou' : 'https://git.oschina.net/wei.chou'
+def siteUrl = baseUrl + '/Annoguard'      // 项目的主页
+def gitUrl = baseUrl + '/Annoguard.git'   // Git仓库的url
+
+// 安装到.m2本地仓库
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom.project {
+            // packaging 'aar' // 只有android有aar
+            name projectName
+            description 'A cool implementation for config Proguard use @Annotation instead of Script.' // 项目描述
+            url siteUrl
+
+            groupId project.group
+            artifactId artifact
+            version project.version
+
+            licenses {
+//                inceptionYear '2016' // 这一句会报错
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+            developers {
+                developer {
+//                    id 'weichou'
+                    name 'Wei.Chou'
+                    email 'weichou2010@gmail.com'
+                }
+            }
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
+bintray {
+    user = BINTRAY_USER     // properties.getProperty("bintray.user")
+    key = BINTRAY_APIKEY    // properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = artifact  // 发布到JCenter上的项目名字
+        userOrg = BINTRAY_ORG
+        version {
+            name = project.version
+        }
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        publish = true
+    }
+}
 
 // 以下可用于发布到Maven仓库
 //uploadArchives {
@@ -86,94 +178,6 @@ def artifact = projectName.toLowerCase() // 不是project的属性，自定义�
 //        }
 //    }
 //}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar', '*.pro'])
-//    compile 'com.nineoldandroids:library:2.4.0+'
-}
-
-// 在命令gradle xxx后面带参数即可 -DforGithub=true/false 即可.
-def forGithub = System.getProperty('forGithub') ?: true
-def baseUrl = forGithub ? 'https://github.com/WeiChou' : 'https://git.oschina.net/wei.chou'
-def siteUrl = '${baseUrl}/Annoguard'      // 项目的主页
-def gitUrl = '${baseUrl}/Annoguard.git'   // Git仓库的url
-
-// 安装到.m2本地仓库
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom.project {
-            // packaging 'aar' // 只有android有aar
-            name projectName
-            description 'An Annotation implementation of Proguard' // 项目描述
-            url siteUrl
-
-            groupId project.group
-            artifactId artifact
-            version project.version
-
-            licenses {
-//                inceptionYear '2016' // 这一句会报错
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                }
-            }
-            developers {
-                developer {
-                    id 'hobby'
-                    name 'Wei.Chou'
-                    email 'iots.im@qq.com'
-                }
-            }
-            scm {
-                connection gitUrl
-                developerConnection gitUrl
-                url siteUrl
-            }
-        }
-    }
-}
-
-task sourcesJar(type: Jar) {
-    from sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-// 解决中文乱码问题，在~/.gradle/wrapper/dists/gradle-x.x-all/xxx/gradle-x.x/bin/gradle(.bat)中找到以下参数并设置值：
-// DEFAULT_JVM_OPTS="-Dfile.encoding=UTF-8"
-// 但本方法也不行，算了。
-
-//task javadoc(type: Javadoc) {
-//    source = sourceSets.main.java.srcDirs
-//    // 没有android
-////    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//}
-// 要求不能使用自关闭元素如<br/>，所以暂不输出文档。
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    from javadoc.destinationDir
-//    classifier = 'javadoc'
-//}
-artifacts {
-//    archives javadocJar
-    archives sourcesJar
-}
-
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
-bintray {
-    user = BINTRAY_USER     // properties.getProperty("bintray.user")
-    key = BINTRAY_APIKEY    // properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = 'maven'
-        name = projectName  // 发布到JCenter上的项目名字
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ['Apache-2.0']
-        publish = true
-    }
-}
 
 // 该命令用于生成jar包
 //gradlew install -DforGithub=true/false
