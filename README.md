@@ -75,3 +75,5 @@
 应用示例：[ L ](http://git.oschina.net/wei.chou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/L.java#L71)；
 
 * (复杂用法示例待续...)
+
+[ ![Download](https://api.bintray.com/packages/hobby/maven/annoguard/images/download.svg) ](https://bintray.com/hobby/maven/annoguard/_latestVersion)
