@@ -69,16 +69,16 @@ javadoc {
 // 所以这样如果检查到文档正确输出了，则不再执行该任务。
 // 效果上，第一次build会失败，但再来一次便会成功。
 javadoc.onlyIf {
-    boolean done = true
+    boolean empty = true
     buildDir.eachDirMatch('docs') { d ->
         d.eachDirMatch('javadoc') { j ->
             println '->javadoc已经存在，不再执行该任务，以免异常中断。'
             println '->path:' + j
-            done = false
+            empty = false
             return
         }
     }
-    done
+    empty
 }
 
 // 要求不能使用自关闭元素如<br/>，所以暂不输出文档。
@@ -124,7 +124,7 @@ install {
             version project.version
 
             licenses {
-//                inceptionYear '2016' // 这一句会报错
+                // inceptionYear '2016' // 这一句会报错
                 license {
                     name 'The Apache Software License, Version 2.0'
                     url 'https://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -132,7 +132,7 @@ install {
             }
             developers {
                 developer {
-//                    id 'weichou'
+                    // id 'weichou'
                     name 'Wei.Chou'
                     email 'weichou2010@gmail.com'
                 }

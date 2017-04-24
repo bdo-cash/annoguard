@@ -15,4 +15,5 @@ include 'api'
 include 'services:webservice'
 */
 
+// 让上传到https://bintray.com上的字段保持小写。
 rootProject.name = 'annoguard'
