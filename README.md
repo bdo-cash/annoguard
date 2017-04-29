@@ -79,7 +79,7 @@ or else from bintray [ ![Download](https://api.bintray.com/packages/hobby/maven/
     
     #如果是以jar包的方式导入的而不是作为库项目，那么需要下面两行：#
     -dontwarn hobby.wei.c.**
-    -libraryjars libs/wei.lib2a.jar
+    -libraryjars libs/annoguard-1.0.0.jar
     
     -keep class com.google.gson.stream.** { *; }
 ```
