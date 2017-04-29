@@ -38,7 +38,7 @@
         细节请参见各注解的源码文档。
 
 * 其它：
-    * 对于 [\**.anno.inject](http://git.oschina.net/wei.chou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/anno/inject) 包中的任何注解，只要该注解没有被优化掉，就会对其直接作用的内容进行反保留。
+    * 对于 [\**.anno.inject](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/anno/inject) 包中的任何注解，只要该注解没有被优化掉，就会对其直接作用的内容进行反保留。
     * 更多内容请见 [@Keep](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep.java) 源码文档。
 
 ------------------------------------------------------------------------------------------------
@@ -47,7 +47,28 @@
 
 ###使用方法：
 
-####1. 在主module根目录下的混淆配置文件 `proguard-rules.pro`（或其他名称）的开头加入下列代码：
+####1. 导入annoguard libs:
+
+import from jcenter repository use gradle script:
+
+```Gradle
+
+    repositories {
+        jcenter()
+    }
+    
+    dependencies {
+        // some code else ...
+        compile 'hobby.wei.c.anno:annoguard:1.0.0'
+    }
+    
+    task genProguardConfigFile(type: UnZip ? ) {
+        // waiting for me please.
+    }
+```
+or else from bintray [ ![Download](https://api.bintray.com/packages/hobby/maven/annoguard/images/download.svg) ](https://bintray.com/hobby/maven/annoguard/_latestVersion)
+
+####2. 在主module根目录下的混淆配置文件 `proguard-rules.pro`（或其他名称）的开头加入下列代码：
 
 ```Bash
 
@@ -56,24 +77,22 @@
     
     -include libs/annotations.pro
     
-    #如果是以jar包的方式导入的而不是作为库项目，那么需要下面两行：
+    #如果是以jar包的方式导入的而不是作为库项目，那么需要下面两行：#
     -dontwarn hobby.wei.c.**
     -libraryjars libs/wei.lib2a.jar
     
     -keep class com.google.gson.stream.** { *; }
 ```
 
-####2. 根据需求在代码中添加`@KeepXxx`注解。
+####3. 根据需求在代码中添加`@KeepXxx`注解。
 
-暂只给出代码中已有的部分示例链接，有任何问题或建议可 [联系作者](http://git.oschina.net/wei.chou/Wei.Lib2A/blob/master/README.md#联系作者)。
+暂只给出代码中已有的部分示例链接，有任何问题或建议可 [联系作者](http://github.com/WeiChou/Wei.Lib2A/blob/master/README.md#联系作者)。
 
 * [`@KeepVp$e`](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/KeepVp$e.java)
 和 [`@KeepMp$e`](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/KeepMp$e.java)
-的应用示例：[AbsJson](http://git.oschina.net/wei.chou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/data/abs/AbsJson.java#L29)；
+的应用示例：[AbsJson](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/data/abs/AbsJson.java#L45)；
 
 * [`@Burden`](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Burden.java)
-应用示例：[ L ](http://git.oschina.net/wei.chou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/L.java#L71)；
+应用示例：[ L ](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/com/wei/c/L.java#L121)；
 
-* (复杂用法示例待续...)
-
-[ ![Download](https://api.bintray.com/packages/hobby/maven/annoguard/images/download.svg) ](https://bintray.com/hobby/maven/annoguard/_latestVersion)
+* 更多应用示例见：[Synthetic](http://github.com/WeiChou/AnnoProguard/blob/master/src/test/example/Synthetic.java)
