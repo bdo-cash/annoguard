@@ -23,12 +23,12 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
 /**
- * <i>弱保留</i> 内部所有static字段。<br/>
+ * <i>弱保留</i> 内部所有static字段。<br>
  * 注意：这里没有<i>强保留</i> 所有static字段的实现，以防止不必要的扩大keep范围。
- * 因为对于非public字段，几乎是不应该keep的。<br/>
- * 通常需要keep的只是public，可用{@link KeepVps$}.<br/>
- * 若仍不能满足需求，则可针对单个字段使用{@link Keep$}.<br/>
- * 使用范围：任何类型。<br/>
+ * 因为对于非public字段，几乎是不应该keep的。<br>
+ * 通常需要keep的只是public，可用{@link KeepVps$}.<br>
+ * 若仍不能满足需求，则可针对单个字段使用{@link Keep$}.<br>
+ * 使用范围：任何类型。<br>
  * 基本规则参见 {@link Keep}.
  *
  * @author Wei Chou(weichou2010@gmail.com)

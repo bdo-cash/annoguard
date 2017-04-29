@@ -28,8 +28,8 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
 /**
- * <i><font color=red>反</font>保留</i> 本注解<u>直接作用</u>的各种名称。<br/>
- * 使用范围：任何位置。<br/>
+ * <i><font color=red>反</font>保留</i> 本注解<u>直接作用</u>的各种名称。<br>
+ * 使用范围：任何位置。<br>
  * 基本规则参见 {@link Keep}.
  *
  * @author Wei Chou(weichou2010@gmail.com)

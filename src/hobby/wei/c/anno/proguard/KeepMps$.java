@@ -23,8 +23,8 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
 /**
- * <i>强保留</i> 内部所有public static方法。<br/>
- * 使用范围：任何类型。<br/>
+ * <i>强保留</i> 内部所有public static方法。<br>
+ * 使用范围：任何类型。<br>
  * 基本规则参见 {@link Keep}.
  *
  * @author Wei Chou(weichou2010@gmail.com)
