@@ -27,15 +27,15 @@ public class L {
      * When be annotated with {@link Burden}, this method will be deleted on proguard task,
      * and the string literal parameters which are not referenced in any other kept fields will be deleted from
      * jar/dex (but this takes some skill, details see {@link Burden}).
-     * but if the method's return-type is not "void", otherwise.
+     * Mind if the method's return-type is not "void", otherwise.
      * <p>
      * 当方法被{@link Burden}标注，则会在混淆任务中被删除，同时参数中如果用到了字符串[字面量]，
      * 但没有被其它任何未删除的变量引用，也会最终从jar/dex中被彻底删除（但这需要一些技巧，详见{@link Burden}文档）。
-     * 但是，如果本方法的返回值不是"void", 则不会应用上述规则。
+     * 注意：如果本方法的返回值不是"void", 则不会应用上述规则。
      *
-     * @param o
-     * @param s
-     * @param args
+     * @param o    log tag.
+     * @param s    formatted string literal.
+     * @param args format args.
      */
     @Burden
     public static void i(Object o, String s, Object... args) {
