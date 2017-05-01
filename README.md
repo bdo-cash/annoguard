@@ -21,7 +21,7 @@
     
 * Appoint
     * Contain chars [<b>`$$`</b>]() means `Reverse Keep`. e.g: [@Keep$$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$$.java);
-    * Contain char [<b>`$`</b>]() means `Strong Keep` (exclude Reverse Keep). e.g: [@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java);
+    * Contain char [<b>`$`</b>]() means `Strong Keep`(exclude Reverse Keep). e.g: [@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java);
     * Does not contain chars above means `Weak Keep`;
     * Does not exist annotation definition of `Non Keep`, means no need for annotate names;
     * End with [<b>`e`</b>]() means the function indicated by the words before "e" will be carried over into subclass/subinterface.
@@ -34,8 +34,8 @@
     * [<b>`V`</b>]()：var, act on variables/fields;
     * [<b>`M`</b>]()：method, act on methods/functions;
     * [<b>`C`</b>]()：constructor, act on constructors;
-    * [<b>`p`</b>]()：public(var/method, depend on another symbol is `V` or `M`). Does not contains means ignore `public/private...`;
-    * [<b>`s`</b>]()：static(var/method, depend on another symbol is `V` or `M`). Does not contains means `non static`.
+    * [<b>`p`</b>]()：public (var/method, depend on another symbol is `V` or `M`). Does not contains means ignore `public/private...`;
+    * [<b>`s`</b>]()：static (var/method, depend on another symbol is `V` or `M`). Does not contains means `non static`.
     
         More details see each doc of `@KeepXxx`.
 
@@ -70,8 +70,8 @@
     * [<b>`V`</b>](): var, 作用于成员变量或常量；
     * [<b>`M`</b>](): method, 作用于方法或函数；
     * [<b>`C`</b>](): constructor, 作用于构造方法；
-    * [<b>`p`</b>](): public(变量或方法，取决于组合的是`V`还是`M`)。没有本字符则表示忽略访问权限修饰；
-    * [<b>`s`</b>](): static(变量或方法，取决于组合的是`V`还是`M`)。没有则表示非static的。
+    * [<b>`p`</b>](): public (变量或方法，取决于组合的是`V`还是`M`)。没有本字符则表示忽略访问权限修饰；
+    * [<b>`s`</b>](): static (变量或方法，取决于组合的是`V`还是`M`)。没有则表示非static的。
     
         细节请参见各注解的源码文档。
 
