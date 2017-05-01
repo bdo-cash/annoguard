@@ -16,26 +16,26 @@
 
 
 * Priority
-    * From high to low in the order: Strong, Weak, Reverse, Non. When be carried over into subclass (subinterface), subclass got the same priority.
-    * Anywhere, if one name be annotated by some different priority but same function of "@KeepXx"s, the higher one will be applied.
+    * From high to low in the order: Strong, Weak, Reverse, Non. When be carried over into subclass/subinterface, subclass/subinterface got the same priority.
+    * Anywhere, if one name be annotated by some different priority but same function of "@KeepXxx"s, the higher one will be applied.
     
 * Appoint
     * Contain chars [<b>`$$`</b>]() means `Reverse Keep`. e.g: [@Keep$$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$$.java);
     * Contain char [<b>`$`</b>]() means `Strong Keep` (exclude Reverse Keep). e.g: [@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java);
     * Does not contain chars above means `Weak Keep`;
     * Does not exist annotation definition of `Non Keep`, means no need for annotate names;
-    * End with [<b>`e`</b>]() means the function indicated by the words before "e" will be carried over into subclass (subinterface).
+    * End with [<b>`e`</b>]() means the function indicated by the words before "e" will be carried over into subclass/subinterface.
     e.g: [@KeepMp$e](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/KeepMp$e.java);
      
-         Note that only when superclass (superinterface) did not deleted on proguard task, subclass (subinterface) may kept.
-         Means must Strong/Reverse Keep superclass (superinterface) first.
+         Note that only when superclass/superinterface did not deleted on proguard task, subclass/subinterface may kept.
+         Means must Strong/Reverse Keep superclass/superinterface first.
         
 * Symbols in the end of `@KeepXxx`, means the target places the annotation act on.
     * [<b>`V`</b>]()：var, act on variables/fields;
     * [<b>`M`</b>]()：method, act on methods/functions;
     * [<b>`C`</b>]()：constructor, act on constructors;
-    * [<b>`p`</b>]()：public (var/method, depend on another symbol is `V` or `M`). Does not contains means ignore `public/private...`;
-    * [<b>`s`</b>]()：static (var/method, depend on another symbol is `V` or `M`). Does not contains means `non static`.
+    * [<b>`p`</b>]()：public(var/method, depend on another symbol is `V` or `M`). Does not contains means ignore `public/private...`;
+    * [<b>`s`</b>]()：static(var/method, depend on another symbol is `V` or `M`). Does not contains means `non static`.
     
         More details see each doc of `@KeepXxx`.
 
@@ -58,7 +58,7 @@
     
 * 符号约定
     * 含有[<b>`$$`</b>]()字符的为`反保留`。如：[@Keep$$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$$.java)；
-    * 含有[<b>`$`</b>]()字符的为`强保留`（反保留除外）。如：[@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java)；
+    * 含有[<b>`$`</b>]()字符的为`强保留`(反保留除外)。如：[@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java)；
     * 不含以上标识字符的为`弱保留`；
     * 没有用于`不保留`的标签，即：不加任何标注则为不保留；
     * 另：以[<b>`e`</b>]()结尾的表示将其前面名称表达的功能延续到子类。如：[@KeepMp$e](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/KeepMp$e.java)。
@@ -70,14 +70,13 @@
     * [<b>`V`</b>](): var, 作用于成员变量或常量；
     * [<b>`M`</b>](): method, 作用于方法或函数；
     * [<b>`C`</b>](): constructor, 作用于构造方法；
-    * [<b>`p`</b>](): public（变量或方法，取决于组合的是`V`还是`M`）。没有本字符则表示忽略访问权限修饰；
-    * [<b>`s`</b>](): static（变量或方法，取决于组合的是`V`还是`M`）。没有则表示非static的。
+    * [<b>`p`</b>](): public(变量或方法，取决于组合的是`V`还是`M`)。没有本字符则表示忽略访问权限修饰；
+    * [<b>`s`</b>](): static(变量或方法，取决于组合的是`V`还是`M`)。没有则表示非static的。
     
         细节请参见各注解的源码文档。
 
 * 其它：
     * 对于包 [\**.anno.inject](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/anno/inject) 中的任何注解，只要该注解没有被优化掉，就会对其直接作用的内容进行反保留。
-    * 更多内容请见 [@Keep](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep.java) 源码文档。
 
 ------------------------------------------------------------------------------------------------
 ---

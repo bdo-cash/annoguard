@@ -36,8 +36,8 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * Priority:
  * <ul>
  * From high to low in the order: <i>Strong</i>, <i>Weak</i>, <i>Reverse</i>, <i>Non</i>.
- * When be carried over into subclass (subinterface), subclass got the same priority.<br>
- * Anywhere, if one name be annotated by some different priority but same function of "@KeepXx"s,
+ * When be carried over into subclass/subinterface, subclass/subinterface got the same priority.<br>
+ * Anywhere, if one name be annotated by some different priority but same function of "@KeepXxx"s,
  * the higher one will be applied.
  * </ul>
  * Appoint:
@@ -47,9 +47,9 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * <li>Does not contain chars above means <i>Weak Keep</i>;
  * <li>Does not exist annotation definition of <i>Non Keep</i>, means no need for annotate names;
  * <li>End with <font color=red><i>e</i></font> means the function indicated by the words before "e"
- * will be <i>carried over into subclass (subinterface)</i>.
- * Note that only when superclass (superinterface) did not deleted on proguard task, subclass (subinterface) may kept.
- * Means must Strong/Reverse Keep superclass (superinterface) first.
+ * will be <i>carried over into subclass/subinterface</i>.
+ * Note that only when superclass/superinterface did not deleted on proguard task, subclass/subinterface may kept.
+ * Means must Strong/Reverse Keep superclass/superinterface first.
  * </ul>
  * Else:
  * <ul>
