@@ -54,7 +54,7 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * <code><font color=blue>public static void i(Object o, String s, Object... args) {</font></code><br>&nbsp;&nbsp;
  * <code><font color=blue>Log.i(tag(o), String.format(s, args));</font></code><br>
  * <code><font color=blue>}</font></code>
- * <li>Mind the {@code args} mustn't contains any string literals, a full solution see <a target="_blank"
+ * <li>Note that the {@code args} mustn't contains any string literals, a full solution see <a target="_blank"
  * href="http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/L.java#L121">
  * L.java</a>.
  * </ul>

@@ -11,7 +11,7 @@
 * [<b>`强`</b>]()`保留`：既不被重命名，又不被删除；
 * [<b>`弱`</b>]()`保留`：只确保不被重命名，不保证不被删除；
 * [<b>`反`</b>]()`保留`：不保证不被重命名，但确保不被删除；
-* [<b>`不`</b>]()`保留`：排除到以上保留名单之外。
+* [<b>`不`</b>]()`保留`：排除到以上保留名单之外。即应用混淆。
 
 
 * 优先级
@@ -20,12 +20,12 @@
     
 * 符号约定
     * 含有[<b>`$$`</b>]()字符的为`反保留`。如：[@Keep$$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$$.java)；
-    * 含有[<b>`$`</b>]()字符（除反保留外）的为`强保留`。如：[@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java)；
+    * 含有[<b>`$`</b>]()字符的为`强保留`（反保留除外）。如：[@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java)；
     * 不含以上标识字符的为`弱保留`；
     * 没有用于`不保留`的标签，即：不加任何标注则为不保留；
     * 另：以[<b>`e`</b>]()结尾的表示将其前面名称表达的功能延续到子类。如：[@KeepMp$e](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/KeepMp$e.java)。
     
-        需要注意的是：只有父类（接口）存在的情况下，才能延续到子类。
+        需要注意的是：只有父类（接口）没有被混淆删除的情况下，才能延续到子类。
         即：首先需要将父类强保留或反保留。
         
 * 类名`@KeepXxx`后面的其它字母符号
@@ -38,7 +38,7 @@
         细节请参见各注解的源码文档。
 
 * 其它：
-    * 对于 [\**.anno.inject](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/anno/inject) 包中的任何注解，只要该注解没有被优化掉，就会对其直接作用的内容进行反保留。
+    * 对于包 [\**.anno.inject](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/anno/inject) 中的任何注解，只要该注解没有被优化掉，就会对其直接作用的内容进行反保留。
     * 更多内容请见 [@Keep](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep.java) 源码文档。
 
 ------------------------------------------------------------------------------------------------
