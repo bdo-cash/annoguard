@@ -1,8 +1,8 @@
 #Annoguard
 
-###本文讲述全新基于`@Annotation`的混淆配置方法
+###This document describe how to use a `New Syntax to Config Proguard` base on `@Annotation`
 
-* 实现原理及目标已经在 [源文件](http://github.com/WeiChou/AnnoProguard/blob/master/libs/annotations.pro) 注释中注明。
+* Principle and goals see [source code](http://github.com/WeiChou/AnnoProguard/blob/master/libs/annotations.pro).
 
 ------------------------------------------------------------------------------------------------
 ---
