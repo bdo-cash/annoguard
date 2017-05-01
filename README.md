@@ -6,6 +6,44 @@
 
 ------------------------------------------------------------------------------------------------
 ---
+
+###Glossary, Rules Definition and Explain
+
+* [<b>`Strong`</b>]() `Keep`: neither be renamed, nor be deleted;
+* [<b>`Weak`</b>]() `Keep`: guarantee not be renamed, but without guarantee not be deleted;
+* [<b>`Reverse`</b>]() `Keep`: without guarantee not be renamed, but guarantee not be deleted;
+* [<b>`Non`</b>]() `Keep`: out of the rules above. Means apply proguard default.
+
+
+* Priority
+    * From high to low in the order: Strong, Weak, Reverse, Non. When be carried over into subclass (subinterface), subclass got the same priority.
+    * Anywhere, if one name be annotated by some different priority but same function of "@KeepXx"s, the higher one will be applied.
+    
+* Appoint
+    * Contain chars [<b>`$$`</b>]() means `Reverse Keep`. e.g: [@Keep$$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$$.java);
+    * Contain char [<b>`$`</b>]() means `Strong Keep` (exclude Reverse Keep). e.g: [@Keep$](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java);
+    * Does not contain chars above means `Weak Keep`;
+    * Does not exist annotation definition of `Non Keep`, means no need for annotate names;
+    * End with [<b>`e`</b>]() means the function indicated by the words before "e" will be carried over into subclass (subinterface).
+    e.g: [@KeepMp$e](http://github.com/WeiChou/AnnoProguard/blob/master/src/hobby/wei/c/anno/proguard/KeepMp$e.java);
+     
+         Note that only when superclass (superinterface) did not deleted on proguard task, subclass (subinterface) may kept.
+         Means must Strong/Reverse Keep superclass (superinterface) first.
+        
+* Symbols in the end of `@KeepXxx`, means the target places the annotation act on.
+    * [<b>`V`</b>]()：var, act on variables/fields;
+    * [<b>`M`</b>]()：method, act on methods/functions;
+    * [<b>`C`</b>]()：constructor, act on constructors;
+    * [<b>`p`</b>]()：public (var/method, depend on another symbol is `V` or `M`). Does not contains means ignore `public/private...`;
+    * [<b>`s`</b>]()：static (var/method, depend on another symbol is `V` or `M`). Does not contains means `non static`.
+    
+        More details see each doc of `@KeepXxx`.
+
+* Else
+    * Any annotation in package [\**.anno.inject](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/anno/inject),
+    if not be deleted on proguard task, will apply Reverse Keep on the names it act directly on.
+
+
 ###概念、规则定义及解释
 
 * [<b>`强`</b>]()`保留`：既不被重命名，又不被删除；
@@ -28,12 +66,12 @@
         需要注意的是：只有父类（接口）没有被混淆删除的情况下，才能延续到子类。
         即：首先需要将父类强保留或反保留。
         
-* 类名`@KeepXxx`后面的其它字母符号
-    * [<b>`V`</b>]()：var, 成员变量或常量；
-    * [<b>`M`</b>]()：method, 方法或函数；
-    * [<b>`C`</b>]()：constructor, 构造方法；
-    * [<b>`p`</b>]()：public变量或方法，取决于组合的是`V`还是`M`。没有本字符则表示忽略访问权限修饰；
-    * [<b>`s`</b>]()：static变量或方法，没有则表示非static的。
+* 类名`@KeepXxx`后面的其它字母符号，表示其作用的目标位置。
+    * [<b>`V`</b>](): var, 作用于成员变量或常量；
+    * [<b>`M`</b>](): method, 作用于方法或函数；
+    * [<b>`C`</b>](): constructor, 作用于构造方法；
+    * [<b>`p`</b>](): public（变量或方法，取决于组合的是`V`还是`M`）。没有本字符则表示忽略访问权限修饰；
+    * [<b>`s`</b>](): static（变量或方法，取决于组合的是`V`还是`M`）。没有则表示非static的。
     
         细节请参见各注解的源码文档。
 
