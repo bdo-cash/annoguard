@@ -26,12 +26,12 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * <i>Weak Keep</i> the names this annotation <u>act directly</u> on. What it means, see below.<br>
  * Scope: anywhere possible.<br>
  * <p>
- * Explain the Glossary:
+ * Glossary:
  * <ul>
  * <li><i>Strong</i> Keep: neither be renamed, nor be deleted;
  * <li><i>Weak</i> Keep: guarantee not be renamed, but without guarantee not be deleted;
  * <li><font color=red><i>Reverse</i></font> Keep: without guarantee not be renamed, but guarantee not be deleted;
- * <li><i>Non</i> Keep: Out of the rules above. Means apply proguard default.
+ * <li><i>Non</i> Keep: out of the rules above. Means apply proguard default.
  * </ul>
  * Priority:
  * <ul>
