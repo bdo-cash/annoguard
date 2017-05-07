@@ -23,6 +23,10 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
 /**
+ * <i>Strong Keep</i> all public but non-static fields in the class.<br>
+ * Scope: any types/classes.<br>
+ * Basic rules see {@link Keep}.<br>
+ * <p>
  * <i>强保留</i> 内部所有public非static字段。<br>
  * 使用范围：任何类型。<br>
  * 基本规则参见 {@link Keep}.

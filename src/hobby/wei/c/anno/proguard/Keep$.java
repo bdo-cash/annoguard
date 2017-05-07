@@ -19,15 +19,14 @@ package hobby.wei.c.anno.proguard;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PACKAGE;
-import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
 /**
+ * <i>Strong Keep</i> the names this annotation <u>act directly</u> on.<br>
+ * Scope: anywhere possible.<br>
+ * Basic rules see {@link Keep}.
+ * <p>
  * <i>强保留</i> 本注解<u>直接作用</u>的各种名称。<br>
  * 使用范围：任何位置。<br>
  * 基本规则参见 {@link Keep}.

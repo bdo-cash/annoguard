@@ -30,7 +30,7 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * <ul>
  * <li><i>Strong</i> Keep: neither be renamed, nor be deleted;
  * <li><i>Weak</i> Keep: guarantee not be renamed, but without guarantee not be deleted;
- * <li><font color=red><i>Reverse</i></font> Keep: without guarantee not be renamed, but guarantee not be deleted;
+ * <li><i><font color=red>Reverse</font></i> Keep: without guarantee not be renamed, but guarantee not be deleted;
  * <li><i>Non</i> Keep: out of the rules above. Means apply proguard default.
  * </ul>
  * Priority:
@@ -64,7 +64,7 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * <ul>
  * <li><i>强</i>保留：既不被重命名，又不被删除；
  * <li><i>弱</i>保留：只确保不被重命名，不保证不被删除；
- * <li><font color=red><i>反</i></font>保留：不保证不被重命名，但确保不被删除；
+ * <li><i><font color=red>反</font></i>保留：不保证不被重命名，但确保不被删除；
  * <li><i>不</i>保留：排除到以上保留名单之外。即应用混淆。
  * </ul>
  * 优先级：

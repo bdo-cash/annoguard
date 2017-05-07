@@ -23,7 +23,12 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
 /**
- * <i>强保留</i> 内部所有构造器，并延续到子类（接口）。<br>
+ * <i><font color=red>Reverse</font> Keep</i> all the constructors in the class,
+ * and carry over the function into subclass/subinterface.<br>
+ * Scope: any types/classes.<br>
+ * Basic rules see {@link Keep}.
+ * <p>
+ * <i><font color=red>反</font>保留</i> 内部所有构造器，并延续到子类（接口）。<br>
  * 使用范围：任何类型。<br>
  * 基本规则参见 {@link Keep}.
  *

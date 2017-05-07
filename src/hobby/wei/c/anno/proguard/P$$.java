@@ -23,6 +23,8 @@ import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.RetentionPolicy.CLASS;
 
 /**
+ * Only act on the basic keep annotations directly.
+ * <p>
  * 仅作用于其他基础的混淆配置标签。
  *
  * @author Wei Chou(weichou2010@gmail.com)
