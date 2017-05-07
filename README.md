@@ -9,7 +9,7 @@
 
 ### Glossary, Rules Definition and Explain
 
-* [<b>`Strong`</b>]()`Keep`: neither be renamed, nor be deleted;
+* [**`Strong`**](#)`Keep`: neither be renamed, nor be deleted;
 * [<b>`Weak`</b>]()`Keep`: guarantee not be renamed, but without guarantee not be deleted;
 * [<b>`Reverse`</b>]()`Keep`: without guarantee not be renamed, but guarantee not be deleted;
 * [<b>`Non`</b>]()`Keep`: out of the rules above. Means apply proguard default.
