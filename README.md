@@ -136,4 +136,4 @@ or else from bintray [ ![Download](https://api.bintray.com/packages/hobby/maven/
 * [`@Burden`](http://github.com/WeiChou/Annoguard/blob/master/src/hobby/wei/c/anno/proguard/Burden.java)
 应用示例：[ L ](http://github.com/WeiChou/Wei.Lib2A/blob/master/Wei.Lib2A/src/hobby/wei/c/L.java#L121)；
 
-* 更多应用示例见：[Synthetic](http://github.com/WeiChou/Annoguard/blob/master/src/test/example/Synthetic.java)
+* 更多应用示例见：[Synthetic](http://github.com/WeiChou/Annoguard/blob/master/test/src/example/Synthetic.java)
