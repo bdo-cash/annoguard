@@ -21,6 +21,7 @@ import hobby.wei.c.anno.proguard.Burden;
 /**
  * @author Wei.Chou(weichou2010@gmail.com)
  * @version 1.0, 25/04/2017
+ * @see example.Synthetic
  */
 public class L {
     /**

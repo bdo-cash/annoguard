@@ -15,7 +15,9 @@
  */
 package example;
 
+import com.google.gson.Gson;
 import example.burden.L;
+import example.keep$$.VO;
 import hobby.wei.c.anno.proguard.Keep$;
 
 /**
@@ -24,7 +26,7 @@ import hobby.wei.c.anno.proguard.Keep$;
  */
 public class Synthetic {
     // this field will be deleted on proguard task, because of "L.i()" will be deleted.
-    // 本方法在Proguard任务中将被删除，因为"L.i()"将被删除。
+    // 本字段在Proguard任务中将被删除，因为"L.i()"将被删除。
     private static final String TAG = Synthetic.class.getSimpleName();
 
     // this method will not change at all, because of Strong("$") Keep.
@@ -42,5 +44,8 @@ public class Synthetic {
         // 下面两行以及字符串字面量"uid:%s, name:%s, others:%s. "和"abcdefg"会在Proguard任务中从jar/dex彻底删除。
         final String stringLiteral = "abcdefg";
         L.i(TAG, "uid:%s, name:%s, others:%s. " + stringLiteral, uid, L.s(name), o);
+
+        // 这里引用了VO, 所有类型VO至少被反保留。
+        new Gson().toJson(new VO());
     }
 }
