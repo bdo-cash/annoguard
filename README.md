@@ -23,11 +23,14 @@
   * Contain char [**`$`**](#~) means `Strong Keep`(exclude Reverse Keep). e.g: [@Keep$](http://github.com/WeiChou/Annoguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java);
   * Does not contain chars above means `Weak Keep`;
   * Does not exist annotation definition of `Non Keep`, means no need for annotate names;
+
+        Equivalent: all Non Keep types, if any fields of the types be kept, the class names of types be Reverse Kept.
+
   * End with [**`e`**](#~) means the function indicated by the words before "e" will be carried over into subclass/subinterface.
   e.g: [@KeepMp$e](http://github.com/WeiChou/Annoguard/blob/master/src/hobby/wei/c/anno/proguard/KeepMp$e.java);
 
-         Note that only when superclass/superinterface did not deleted on proguard task, subclass/subinterface may kept.
-         Means must Strong/Reverse Keep superclass/superinterface first.
+        Note that only when superclass/superinterface did not deleted on proguard task, subclass/subinterface may kept.
+        Means must Strong/Reverse Keep superclass/superinterface first.
 
 > ##### Symbols in the end of `@KeepXxx`, means the target places the annotation act on.
   * [**`V`**](#~)：var, act on variables/fields;
@@ -59,6 +62,9 @@
   * 含有[**`$`**](#~)字符的为`强保留`(反保留除外)。如：[@Keep$](http://github.com/WeiChou/Annoguard/blob/master/src/hobby/wei/c/anno/proguard/Keep$.java)；
   * 不含以上标识字符的为`弱保留`；
   * 没有用于`不保留`的标签，即：不加任何标注则为不保留；
+
+        等效性：所有不保留的类型，如果该类型的任一字段被保留了，则效果上该类型名被反保留。
+
   * 另：以[**`e`**](#~)结尾的表示将其前面名称表达的功能延续到子类。如：[@KeepMp$e](http://github.com/WeiChou/Annoguard/blob/master/src/hobby/wei/c/anno/proguard/KeepMp$e.java)。
 
         需要注意的是：只有父类（接口）没有被混淆删除的情况下，才能延续到子类。

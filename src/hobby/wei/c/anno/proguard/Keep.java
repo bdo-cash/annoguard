@@ -46,6 +46,7 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * <li>Contain char <font color=red><i>$</i></font> means <i>Strong Keep</i> (exclude Reverse Keep);
  * <li>Does not contain chars above means <i>Weak Keep</i>;
  * <li>Does not exist annotation definition of <i>Non Keep</i>, means no need for annotate names;
+ * Equivalent: all Non Keep types, if any fields of the types be kept, the class names of types be Reverse Kept.
  * <li>End with <font color=red><i>e</i></font> means the function indicated by the words before "e"
  * will be <i>carried over into subclass/subinterface</i>.
  * Note that only when superclass/superinterface did not deleted on proguard task, subclass/subinterface may kept.
@@ -78,6 +79,7 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
  * <li>含有<font color=red><i>$</i></font> 字符的为<i>强保留</i>（反保留除外）；
  * <li>不含以上标识字符的为<i>弱保留</i>；
  * <li>没有用于<i>不保留</i> 的标签，即：不加任何标注则为不保留；
+ * 等效性：所有不保留的类型，如果该类型的任一字段被保留了，则效果上该类型名被反保留。
  * <li>另：以<font color=red><i>e</i></font> 结尾的表示将其前面名称表达的功能<i>延续到子类（接口）</i>。
  * 需要注意的是：只有父类（接口）没有被混淆删除的情况下，才能延续到子类。即：首先需要将父类强保留或反保留。
  * </ul>
