@@ -23,8 +23,6 @@ repositories {
     jcenter()
 }
 
-
-
 sourceSets {
     main {
         java {
