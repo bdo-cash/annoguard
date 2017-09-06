@@ -1,0 +1,67 @@
+
+name := baseDirectory.value.getName
+
+organization := "hobby.wei.c.anno"
+
+version := "1.0.0"
+
+scalaVersion := "2.11.7"
+
+libraryProject := true
+
+exportJars := true
+
+// 可以去掉与 Scala 版本的关联
+crossPaths := false
+
+autoScalaLibrary := false
+
+proguardVersion := "5.2.1" // 必须高于 5.1，见 https://github.com/scala-android/sbt-android。
+
+// sourceDirectories 包括了 javaSource 和 scalaSource，但不包含 sourceDirectory。
+//sourceDirectories in Compile += baseDirectory.value / "src"
+//sourceDirectories in Test := Seq(baseDirectory.value / "test/src")
+
+// Java Code 必须用这种方式
+javaSource in Compile := baseDirectory.value / "src"
+javaSource in Test := baseDirectory.value / "test/src"
+
+//scalaSource := ???
+
+// Default unmanaged resource directory, used for user-defined resources.
+//resourceDirectory := ???
+// List of all resource directories, both managed and unmanaged.
+resourceDirectories in Compile += baseDirectory.value / "impl"
+
+// Filter for including sources and resources files from default directories.
+//includeFilter := "*.java" | "*.scala" | "*.pro"
+
+packageConfiguration in Compile in packageBin := {
+  val oldPkgConf = (packageConfiguration in Compile in packageBin).value
+  val impl = "impl"
+
+  // 一个*表示在所有直接子路径中查找，两个**表示在所有子路径（包括直接和间接）中查找。
+  val sources = ((baseDirectory.value / impl) * "*.pro").get.map(f => (f, impl + Path.sep + f.getName))
+
+  //  streams.value.log.info("[packageConfiguration] oldPkgConf.sources: " + oldPkgConf.sources)
+  streams.value.log.info("[packageConfiguration] 新增 impl.sources: " + sources)
+  val newPkgConf = new Package.Configuration(oldPkgConf.sources ++ sources, oldPkgConf.jar, oldPkgConf.options)
+  //  streams.value.log.info("[packageConfiguration] newPkgConf.sources: " + newPkgConf.sources)
+
+  newPkgConf
+}
+
+// 这种"~="写法的代码段里面无法引用 xxxKey.value，只有像上面":="的写法可以。
+//packageBin ~= (bin => { newBin })
+
+// 这种"<<="写法被弃用
+//lazy val pkgTask = taskKey[Unit]("") <<= (baseDirectory,
+//  target,
+//  fullClasspath in Compile,
+//  packageBin in Compile,
+//  resources in Compile,
+//  streams) map { // 这个 map 有个神奇的地方在于将前面的 xxxKey 参数进行了 .value（有限制）求值后作为后面函数的入参。
+//  (baseDir, targetDir, cp, jar, res, s) => {
+//    s.log.info("[打包] 创建目录impl ...")
+//  }
+//}

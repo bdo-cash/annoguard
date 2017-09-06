@@ -30,7 +30,7 @@ sourceSets {
             exclude 'src/test'
         }
         resources {
-            srcDirs 'libs'
+            srcDirs 'impl'
             include '*.pro'
         }
     }
