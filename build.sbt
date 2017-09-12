@@ -1,4 +1,3 @@
-
 name := baseDirectory.value.getName
 
 organization := "hobby.wei.c.anno"
