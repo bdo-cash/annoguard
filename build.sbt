@@ -44,10 +44,9 @@ packageConfiguration in Compile in packageBin := {
   // 一个*表示在所有直接子路径中查找，两个**表示在所有子路径（包括直接和间接）中查找。
   val sources = ((baseDirectory.value / impl) * "*.pro").get.map(f => (f, impl + Path.sep + f.getName))
 
-  //  streams.value.log.info("[packageConfiguration] oldPkgConf.sources: " + oldPkgConf.sources)
-  streams.value.log.info("[packageConfiguration] 新增 impl.sources: " + sources)
+  streams.value.log.debug("[packageConfAddSource] done. -------------------->")
+  streams.value.log.info("annoguard sources:\n" + sources.mkString("(", ",\n", ")"))
   val newPkgConf = new Package.Configuration(oldPkgConf.sources ++ sources, oldPkgConf.jar, oldPkgConf.options)
-  //  streams.value.log.info("[packageConfiguration] newPkgConf.sources: " + newPkgConf.sources)
 
   newPkgConf
 }
