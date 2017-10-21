@@ -45,7 +45,7 @@ packageConfiguration in Compile in packageBin := {
   val sources = ((baseDirectory.value / impl) * "*.pro").get.map(f => (f, impl + Path.sep + f.getName))
 
   streams.value.log.info("[packageConfAddSource] done. -------------------->")
-  streams.value.log.info("annoguard sources:\n" + sources.mkString("(", ",\n", ")"))
+  streams.value.log.info("annoguard sources:" + sources.mkString("(\n", ",\n", "\n)"))
   val newPkgConf = new Package.Configuration(oldPkgConf.sources ++ sources, oldPkgConf.jar, oldPkgConf.options)
 
   newPkgConf
