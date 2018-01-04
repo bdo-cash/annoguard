@@ -2,11 +2,11 @@ name := baseDirectory.value.getName
 
 organization := "hobby.wei.c.anno"
 
-version := "1.0.0"
+version := "1.0.3"
 
 scalaVersion := "2.11.7"
 
-libraryProject := true
+//libraryProject := true
 
 exportJars := true
 
@@ -15,7 +15,7 @@ crossPaths := false
 
 autoScalaLibrary := false
 
-proguardVersion := "5.2.1" // 必须高于 5.1，见 https://github.com/scala-android/sbt-android。
+//proguardVersion := "5.2.1" // 必须高于 5.1，见 https://github.com/scala-android/sbt-android。
 
 // sourceDirectories 包括了 javaSource 和 scalaSource，但不包含 sourceDirectory。
 //sourceDirectories in Compile += baseDirectory.value / "src"
