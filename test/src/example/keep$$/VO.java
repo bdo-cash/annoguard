@@ -6,7 +6,7 @@ import hobby.wei.c.anno.proguard.Keep$$;
 // 本类被Synthetic引用了，因此至少会被反保留。
 
 /**
- * @author Wei.Chou(weichou2010@gmail.com)
+ * @author Wei Chou(weichou2010@gmail.com)
  * @version 1.0, 14/05/2017
  * @see example.Synthetic
  */

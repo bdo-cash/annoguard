@@ -19,7 +19,7 @@ package example.keep;
 import hobby.wei.c.anno.proguard.*;
 
 /**
- * @author Wei.Chou(weichou2010@gmail.com)
+ * @author Wei Chou(weichou2010@gmail.com)
  * @version 1.0, 30/04/2017
  */
 @KeepVps$ // 强保留public static 字段（常/变量）。
