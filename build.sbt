@@ -15,6 +15,9 @@ crossPaths := false
 
 autoScalaLibrary := false
 
+// 解决生成文档报错导致 jitpack.io 出错的问题。
+publishArtifact in packageDoc := false
+
 //proguardVersion := "5.2.1" // 必须高于 5.1，见 https://github.com/scala-android/sbt-android。
 
 // sourceDirectories 包括了 javaSource 和 scalaSource，但不包含 sourceDirectory。
