@@ -4,7 +4,7 @@ organization := "hobby.wei.c.anno"
 
 version := "1.0.3"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.6"
 
 //libraryProject := true
 
