@@ -83,7 +83,6 @@
 
 #####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>##
 #####Android提供的Keep注解，不推荐使用#
-#####目前Gradle(据说)也并未对其实现#
 -keep, allowoptimization, allowobfuscation @interface android.support.annotation.Keep
 -keep @android.support.annotation.Keep @interface *
 -keep @android.support.annotation.Keep interface *
@@ -100,6 +99,18 @@
 #}
 -keepclassmembers class * {
     @android.support.annotation.Keep *;
+}
+##摘自META-INF/proguard/androidx-annotations.pro#
+-keep, allowobfuscation @interface androidx.annotation.Keep
+-keep @androidx.annotation.Keep class * {*;}
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <methods>;
+}
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <fields>;
+}
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <init>(...);
 }
 ##<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<#####
 
