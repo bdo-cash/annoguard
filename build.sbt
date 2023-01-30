@@ -2,15 +2,13 @@ name := baseDirectory.value.getName
 
 organization := "hobby.wei.c.anno"
 
-version := "1.0.5"
+version := "1.0.6"
 
-scalaVersion := "2.11.12"
+scalaVersion := "2.12.17"
 
 crossScalaVersions := Seq(
-  /*"2.11.7", 多余，不需要两个*/
   "2.11.12",
-  /*"2.12.2", 有一些编译问题：`the interface is not a direct parent`。*/
-  "2.12.12")
+  "2.12.17")
 
 //libraryProject := true
 
