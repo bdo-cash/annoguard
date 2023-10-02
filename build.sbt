@@ -2,13 +2,13 @@ name := baseDirectory.value.getName
 
 organization := "hobby.wei.c.anno"
 
-version := "1.0.6"
+version := "1.0.7"
 
-scalaVersion := "2.12.17"
+scalaVersion := "2.12.18"
 
 crossScalaVersions := Seq(
   "2.11.12",
-  "2.12.17")
+  "2.12.18")
 
 //libraryProject := true
 
