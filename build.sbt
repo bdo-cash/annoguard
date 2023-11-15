@@ -2,13 +2,15 @@ name := baseDirectory.value.getName
 
 organization := "hobby.wei.c.anno"
 
-version := "1.0.7"
+version := "2.0.0"
 
 scalaVersion := "2.12.18"
 
 crossScalaVersions := Seq(
   "2.11.12",
-  "2.12.18")
+  "2.12.18",
+  "2.13.10"
+)
 
 //libraryProject := true
 
@@ -20,7 +22,7 @@ crossPaths := false
 autoScalaLibrary := false
 
 // 解决生成文档报错导致 jitpack.io 出错的问题。
-publishArtifact in packageDoc := false
+packageDoc / publishArtifact := false
 
 //proguardVersion := "5.2.1" // 必须高于 5.1，见 https://github.com/scala-android/sbt-android。
 
@@ -29,25 +31,25 @@ publishArtifact in packageDoc := false
 //sourceDirectories in Test := Seq(baseDirectory.value / "test/src")
 
 // Java Code 必须用这种方式
-javaSource in Compile := baseDirectory.value / "src"
-javaSource in Test := baseDirectory.value / "test/src"
+Compile / javaSource := baseDirectory.value / "src"
+Test / javaSource := baseDirectory.value / "test/src"
 
 //scalaSource := ???
 
 // Default unmanaged resource directory, used for user-defined resources.
 //resourceDirectory := ???
 // List of all resource directories, both managed and unmanaged.
-resourceDirectories in Compile += baseDirectory.value / "impl"
+Compile / resourceDirectories += baseDirectory.value / "impl"
 
 // Filter for including sources and resources files from default directories.
 //includeFilter := "*.java" | "*.scala" | "*.pro"
 
 offline := true
 
-libraryDependencies += "com.google.code.gson" % "gson" % "2.8.0"
+//libraryDependencies += "com.google.code.gson" % "gson" % "2.8.0"
 
-packageConfiguration in Compile in packageBin := {
-  val oldPkgConf = (packageConfiguration in Compile in packageBin).value
+Compile / packageBin / packageConfiguration := {
+  val oldPkgConf = (Compile / packageBin / packageConfiguration).value
   val impl = "impl"
 
   // 一个*表示在所有直接子路径中查找，两个**表示在所有子路径（包括直接和间接）中查找。
